@@ -1,0 +1,148 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 754px;
+}
+
+.u-section-1 .u-text-1 {
+  margin-bottom: 0;
+  margin-top: 20px;
+  font-size: 2.25rem;
+  font-weight: normal;
+  font-family: "Alfa Slab One";
+}
+
+.u-section-1 .u-text-2 {
+  font-family: "Alfa Slab One";
+  margin: -39px 432px 0 auto;
+}
+
+.u-section-1 .u-form-1 {
+  height: 332px;
+  margin: 0 -30px 0 600px;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-form-2 {
+  width: 570px;
+  margin: -214px auto 60px 0;
+}
+
+.u-section-1 .u-form-group-6 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-btn-2 {
+  background-image: none;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 992px;
+  }
+
+  .u-section-1 .u-text-2 {
+    width: auto;
+    font-weight: normal;
+    margin-top: 367px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: -406px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-form-2 {
+    height: 332px;
+    margin-top: 85px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 803px;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-top: 352px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: -391px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-form-2 {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1154px;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-top: 364px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: -384px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-form-2 {
+    margin-top: 52px;
+    margin-bottom: 60px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    width: auto;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 240px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-weight: 700;
+    margin-top: 378px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: -386px;
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-1 .u-form-2 {
+    margin-top: 82px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+}.menu {
+	text-color: white;
+} 
