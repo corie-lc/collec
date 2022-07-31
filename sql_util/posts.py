@@ -1,4 +1,3 @@
-import flask_session
 import mysql
 import mysql.connector
 from flask import session

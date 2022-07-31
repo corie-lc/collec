@@ -1,6 +1,5 @@
 import mysql
 import mysql.connector
-from flask import Flask, render_template, request
 from sql_util.users import does_user_exist, crete_user, login, sql_update_user
 from sql_util.posts import create_post, add_comment
 

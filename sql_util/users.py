@@ -1,7 +1,5 @@
 import mysql
 import mysql.connector
-from flask import session
-
 
 def login(name, password):
     print("aa")
