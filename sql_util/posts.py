@@ -6,6 +6,7 @@ from flask import session
 def add_comment(comment, post_id):
     print(post_id)
 
+    # init server
     mydb = mysql.connector.connect(
         host="localhost",
         user="admin",
@@ -13,8 +14,10 @@ def add_comment(comment, post_id):
         database="collec"
     )
 
+    # cursor is server controller
     mycursor = mydb.cursor()
 
+    # passing commands to cursor/controller
     mycursor.execute('''
 
             INSERT INTO comments

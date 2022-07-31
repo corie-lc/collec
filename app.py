@@ -7,26 +7,28 @@ from flask import Flask, render_template, redirect, request, session
 from flask_session import Session
 
 
+# init flask app, and secret key (used for security purposes)
 app = Flask(__name__)
 app.secret_key = '681336'
 
 
 @app.route('/')
 def hello_world():  # put application's code here
+    # init session
     app.config["SESSION_PERMANENT"] = False
     app.config["SESSION_TYPE"] = "filesystem"
 
     sess = Session()
-
     sess.init_app(app)
 
     Session(app)
     return render_template('Home.html')
 
 
-@app.route('/post/<name>')
-def post(name):
-    return render_template('post.html', para1=name)
+@app.route('/post/<post_id>')
+def post(post_id):
+    # renders post.html page, renders page with correct post
+    return render_template('post.html', para1=post_id)
 
 
 @app.route('/settings')
@@ -51,10 +53,12 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login_flask():
+    # getting input from login page
     name = request.form.get("login-name")
     password = request.form.get("login-password")
 
     if login(name, password):
+        # adding user to session
         session["username"] = name
         session["password"] = password
         return render_template("feed.html")
@@ -64,11 +68,11 @@ def login_flask():
 
 @app.route('/createpost', methods=['POST', 'GET'])
 def create_post_flask():
+    # collecting input from createpost
     title = request.form.get("title")
     desc = request.form.get("desc")
     name = request.form.get("photo-file")
 
-    print(title, desc)
     create_post(title, desc)
 
     return render_template("feed.html")
@@ -108,7 +112,7 @@ def change_password():
     else:
         return render_template("settings.html")
 
-
+ # needs to be deleted
 def test():
     mydb = mysql.connector.connect(
         host="localhost",

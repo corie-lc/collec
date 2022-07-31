@@ -1,8 +1,9 @@
 import mysql
 import mysql.connector
 
+
 def login(name, password):
-    print("aa")
+    # init server
     mydb = mysql.connector.connect(
         host="localhost",
         user="admin",
@@ -10,17 +11,13 @@ def login(name, password):
         database="collec"
     )
 
+    # cursor is controller for server
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM users")
 
     for user in cursor:
-        print(user[1])
-        print(user[3])
         if user[1] == name and user[3] == password:
-            print('login succ')
             return True
-
-        print("login fail")
 
     return False
 
