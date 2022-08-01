@@ -36,7 +36,6 @@ def post(post_id):
 def post_comment(post_id):
     comment = request.form.get('comment')
     add_comment(comment, post_id)
-    print('here')
     return render_template('post.html/', para1=post_id)
 
 
@@ -142,6 +141,25 @@ def test():
     return posts
 
 
+def get_comments():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM comments")
+    comments = []
+
+    for item in cursor:
+        comments.append(item)
+
+    return comments
+
+
+app.jinja_env.globals.update(comments=get_comments)
 app.jinja_env.globals.update(test=test)
 
 if __name__ == '__main__':

@@ -121,12 +121,15 @@
               </a>
             </li>
           </ul>
+
           <div class="u-tab-content">
             <div class="u-black u-container-style u-tab-active u-tab-pane u-tab-pane-1" id="tab-081f" role="tabpanel" aria-labelledby="link-tab-081f">
               <div class="u-container-layout u-container-layout-1">
                 <div class="u-border-3 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-1"></div>
                 <div class="u-align-left u-border-3 u-border-grey-40 u-container-style u-group u-group-1">
-                  <div class="u-container-layout u-container-layout-2"><span class="u-icon u-text-palette-1-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 55 55" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-124d"></use></svg><svg class="u-svg-content" viewBox="0 0 55 55" x="0px" y="0px" id="svg-124d" style="enable-background:new 0 0 55 55;"><path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
+                  <div class="u-container-layout u-container-layout-2">
+                   {% for post in  comments()  %}
+                      <span class="u-icon u-text-palette-1-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 55 55" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-124d"></use></svg><svg class="u-svg-content" viewBox="0 0 55 55" x="0px" y="0px" id="svg-124d" style="enable-background:new 0 0 55 55;"><path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
 	c0.058,0.049,0.121,0.089,0.179,0.137c0.474,0.393,0.965,0.766,1.465,1.127c0.162,0.117,0.324,0.234,0.489,0.348
 	c0.534,0.368,1.082,0.717,1.642,1.048c0.122,0.072,0.245,0.142,0.368,0.212c0.613,0.349,1.239,0.678,1.88,0.98
 	c0.047,0.022,0.095,0.042,0.142,0.064c2.089,0.971,4.319,1.684,6.651,2.105c0.061,0.011,0.122,0.022,0.184,0.033
@@ -142,8 +145,12 @@
 	s-7.024,1.065-8.867,3.168c-2.119,2.416-1.935,5.346-1.883,5.864v4.667c-0.568,0.661-0.887,1.502-0.887,2.369v3.545
 	c0,1.101,0.494,2.128,1.34,2.821c0.81,3.173,2.477,5.575,3.093,6.389v2.894c0,0.816-0.445,1.566-1.162,1.958l-7.907,4.313
 	c-0.252,0.137-0.502,0.297-0.752,0.476C5.276,41.792,2,35.022,2,27.5z"></path></svg></span>
-                    <p class="u-text u-text-1">This is the comments</p>
+                        <p class="u-text u-text-1">{{ post[1] }} - {{ post[2] }}</p>
+                                    {%  endfor %}
                   </div>
+
+
+
                 </div>
                   <form action="/post_comment/ {{ para1 }}" method= "POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                   <div class="u-form-group u-form-group-2">
@@ -154,18 +161,6 @@
                   <input type="submit" value="/post_comment">
                 </div>
             </form>
-              </div>
-            </div>
-
-            <div class="u-black u-container-style u-tab-pane u-tab-pane-2" id="tab-4d57" role="tabpanel" aria-labelledby="link-tab-4d57">
-              <div class="u-container-layout u-container-layout-3">
-                <h4 class="u-text u-text-default u-text-2">The Basics of Shipping</h4>
-                <p class="u-text u-text-default u-text-3">In this article we will cover the BASICS of Who is Who and what role they play in the South African Container Shipping industry..</p>
-                <ul class="u-text u-text-default u-text-4">
-                  <li>Transnet Freight Rail (formerly known as Spoornet) </li>
-                  <li>Transnet National Port Authority (formerly known as NPA) </li>
-                  <li>Transnet Port Terminals (formerly known as Portnet, SAPO)</li>
-                </ul>
               </div>
             </div>
             <div class="u-black u-container-style u-tab-pane u-tab-pane-3" id="tab-3a42" role="tabpanel" aria-labelledby="link-tab-3a42">
