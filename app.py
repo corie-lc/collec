@@ -1,11 +1,11 @@
 import mysql
 import mysql.connector
+from flask_session import Session
+
 from sql_util.users import does_user_exist, crete_user, login, sql_update_user
 from sql_util.posts import create_post, add_comment
 
-from flask import Flask, render_template, redirect, request, session
-from flask_session import Session
-
+from flask import Flask, render_template, redirect, request, session, url_for
 
 # init flask app, and secret key (used for security purposes)
 app = Flask(__name__)
@@ -27,8 +27,17 @@ def hello_world():  # put application's code here
 
 @app.route('/post/<post_id>')
 def post(post_id):
+    print(post_id)
     # renders post.html page, renders page with correct post
     return render_template('post.html', para1=post_id)
+
+
+@app.route('/post_comment/<post_id>', methods=['GET', 'POST'])
+def post_comment(post_id):
+    comment = request.form.get('comment')
+    add_comment(comment, post_id)
+    print('here')
+    return render_template('post.html/', para1=post_id)
 
 
 @app.route('/settings')
@@ -53,6 +62,7 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login_flask():
+    print("HERE")
     # getting input from login page
     name = request.form.get("login-name")
     password = request.form.get("login-password")
@@ -112,7 +122,8 @@ def change_password():
     else:
         return render_template("settings.html")
 
- # needs to be deleted
+
+# needs to be deleted
 def test():
     mydb = mysql.connector.connect(
         host="localhost",

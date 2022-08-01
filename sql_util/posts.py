@@ -24,6 +24,8 @@ def add_comment(comment, post_id):
             VALUES (%s, %s, %s);
 
         ''', (post_id, comment, session['username']))
+    print("Commit")
+    mydb.commit()
 
 
 def create_post(title, desc):
