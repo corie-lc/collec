@@ -2,6 +2,23 @@ import mysql
 import mysql.connector
 
 
+def get_user_email(username, password):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    # cursor is controller for server
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM users")
+
+    for user in cursor:
+        if user[1] == username and user[3] == password:
+            return user[2]
+
+
 def login(name, password):
     # init server
     mydb = mysql.connector.connect(
@@ -71,12 +88,13 @@ def sql_update_user(username, old, new, password, update_type):
         database="collec"
     )
 
+    # cursor is controller for server
     cursor = mydb.cursor(buffered=True)
     cursor.execute("SELECT * FROM users")
 
     for user in cursor:
-        if user[1] == username and password == user[3]:
-            print("here")
+        print(username, password, user[1], user[2], user[3])
+        if user[1] == username and user[3] == password:
 
             # username
             if update_type == 1:
@@ -127,9 +145,5 @@ def sql_update_user(username, old, new, password, update_type):
 
         else:
             print("verification failure")
-
-
-
-
 
 # does_user_exist("dev")

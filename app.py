@@ -2,7 +2,7 @@ import mysql
 import mysql.connector
 from flask_session import Session
 
-from sql_util.users import does_user_exist, crete_user, login, sql_update_user
+from sql_util.users import does_user_exist, crete_user, login, sql_update_user, get_user_email
 from sql_util.posts import create_post, add_comment
 
 from flask import Flask, render_template, redirect, request, session, url_for
@@ -65,6 +65,7 @@ def login_flask():
     # getting input from login page
     name = request.form.get("login-name")
     password = request.form.get("login-password")
+    session.clear()
 
     if login(name, password):
         # adding user to session
@@ -100,10 +101,14 @@ def change_username():
 
 @app.route('/change_email', methods=['POST', 'GET'])
 def change_email():
-    email = request.form.get('new_email')
+    new_email = request.form.get('new_email')
     old_password = request.form.get('old_password')
 
-    if sql_update_user(session['username'], session['email'], email, old_password, 2):
+    username = session['username']
+    print(username, "AHH")
+    password = session['password']
+
+    if sql_update_user(username, get_user_email(username, password), new_email, old_password, 2):
         return render_template("Home.html")
     else:
         return render_template("settings.html")
