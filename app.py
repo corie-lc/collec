@@ -141,7 +141,7 @@ def test():
     return posts
 
 
-def get_comments():
+def get_comments(post_id):
     mydb = mysql.connector.connect(
         host="localhost",
         user="admin",
@@ -154,7 +154,9 @@ def get_comments():
     comments = []
 
     for item in cursor:
-        comments.append(item)
+        if item[0] == post_id:
+            print(item)
+            comments.append(item)
 
     return comments
 
