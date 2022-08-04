@@ -1,3 +1,5 @@
+import random
+
 import mysql
 import mysql.connector
 from flask import session
@@ -24,7 +26,6 @@ def add_comment(comment, post_id):
             VALUES (%s, %s, %s);
 
         ''', (post_id, comment, session['username']))
-    print("Commit")
     mydb.commit()
 
 
@@ -46,3 +47,30 @@ def create_post(title, desc):
         ''', ("cat", "username", "photo uri", title, desc))
 
     mydb.commit()
+
+
+def assign_post_id():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    num = 1
+    # num = random.randint(20, 20)
+
+    # cursor is controller for server
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM comments")
+    posts = []
+
+    for post in cursor:
+        if post[0] == str(num):
+            posts.append(post)
+
+    if len(posts) > 0:
+        while str(num) == str(posts[0][0]):
+            num = random.randint(000000000, 10000000000)
+
+    return num

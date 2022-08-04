@@ -4,6 +4,7 @@ from flask_session import Session
 
 from sql_util.users import does_user_exist, crete_user, login, sql_update_user, get_user_email
 from sql_util.posts import create_post, add_comment
+from sql_util.posts import assign_post_id
 
 from flask import Flask, render_template, redirect, request, session, url_for
 
@@ -22,6 +23,8 @@ def hello_world():  # put application's code here
     sess.init_app(app)
 
     Session(app)
+    get_new_post_id()
+
     return render_template('Home.html')
 
 
@@ -164,6 +167,12 @@ def get_comments(post_id):
             comments.append(item)
 
     return comments
+
+
+def get_new_post_id():
+    num = assign_post_id()
+    print(num)
+    return num
 
 
 app.jinja_env.globals.update(comments=get_comments)
