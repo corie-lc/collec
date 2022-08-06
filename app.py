@@ -64,7 +64,6 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login_flask():
-    print("HERE")
     # getting input from login page
     name = request.form.get("login-name")
     password = request.form.get("login-password")
@@ -108,7 +107,6 @@ def change_email():
     old_password = request.form.get('old_password')
 
     username = session['username']
-    print(username, "AHH")
     password = session['password']
 
     if sql_update_user(username, get_user_email(username, password), new_email, old_password, 2):
@@ -121,8 +119,6 @@ def change_email():
 def change_password():
     new_password = request.form.get('new_password')
     old_password = request.form.get('old_password')
-    print(new_password)
-    print(old_password)
 
     if sql_update_user(session['username'], old_password, new_password, old_password, 3):
         return render_template("Home.html")
@@ -131,7 +127,8 @@ def change_password():
 
 
 # needs to be deleted
-def test():
+def test(search_entry):
+    print(search_entry)
     mydb = mysql.connector.connect(
         host="localhost",
         user="admin",
@@ -144,9 +141,25 @@ def test():
     posts = []
 
     for item in cursor:
-        posts.append(item)
+        if len(str(search_entry)) > 0:
+            print(search_entry)
+            if str(search_entry) in item[3]:
+                posts.append(item)
+            else:
+                pass
+        else:
+            posts.append(item)
 
+    print(posts)
     return posts
+
+
+@app.route('/search/',  methods=['POST', 'GET'])
+def search():
+    search_entry = request.form.get('search_entry')
+    print(search_entry)
+    print("----")
+    return render_template('search.html/', para1=search_entry)
 
 
 def get_comments(post_id):
@@ -171,11 +184,11 @@ def get_comments(post_id):
 
 def get_new_post_id():
     num = assign_post_id()
-    print(num)
     return num
 
 
 app.jinja_env.globals.update(comments=get_comments)
+app.jinja_env.globals.update(search=search)
 app.jinja_env.globals.update(test=test)
 
 if __name__ == '__main__':

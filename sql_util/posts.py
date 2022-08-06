@@ -42,9 +42,9 @@ def create_post(title, desc):
     mycursor.execute('''
 
             INSERT INTO userposts
-            VALUES (%s, %s, %s, %s, %s);
+            VALUES (%s, %s, %s, %s, %s, %s );
 
-        ''', ("cat", "username", "photo uri", title, desc))
+        ''', ("cat", "username", "photo uri", title, desc, assign_post_id()))
 
     mydb.commit()
 
@@ -57,20 +57,45 @@ def assign_post_id():
         database="collec"
     )
 
-    num = 1
-    # num = random.randint(20, 20)
+    num = random.randint(20, 20)
 
     # cursor is controller for server
     cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM comments")
+    cursor.execute("SELECT * FROM userposts")
     posts = []
 
     for post in cursor:
-        if post[0] == str(num):
+        if post[5] == str(num):
             posts.append(post)
 
     if len(posts) > 0:
-        while str(num) == str(posts[0][0]):
+        while str(num) == str(posts[0][5]):
+            num = random.randint(000000000, 10000000000)
+
+    return num
+
+
+def assign_collection_id():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    num = random.randint(20, 20)
+
+    # cursor is controller for server
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM userposts")
+    posts = []
+
+    for post in cursor:
+        if post[6] == str(num):
+            posts.append(post)
+
+    if len(posts) > 0:
+        while str(num) == str(posts[0][6]):
             num = random.randint(000000000, 10000000000)
 
     return num

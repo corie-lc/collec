@@ -46,14 +46,14 @@
             c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </a>
         </div>
-        <form action="#" method="get" class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
+        <form action="/search" method="POST" class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
           <button class="u-search-button" type="submit">
             <span class="u-search-icon u-spacing-10 u-text-grey-40">
               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9dab"></use></svg>
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-9dab" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
             </span>
           </button>
-          <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
+            <input class="u-search-input" type="search" name="search_entry" value="" placeholder="Search">
         </form><span class="u-dialog-link u-file-icon u-icon u-text-custom-color-2 u-icon-4" data-href="#sec-9605"><img src="static/983901.png" alt=""></span><span class="u-icon u-text-custom-color-2 u-icon-5"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 55 55" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-e8b4"></use></svg><svg class="u-svg-content" viewBox="0 0 55 55" x="0px" y="0px" id="svg-e8b4" style="enable-background:new 0 0 55 55;"><path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
 	c0.058,0.049,0.121,0.089,0.179,0.137c0.474,0.393,0.965,0.766,1.465,1.127c0.162,0.117,0.324,0.234,0.489,0.348
 	c0.534,0.368,1.082,0.717,1.642,1.048c0.122,0.072,0.245,0.142,0.368,0.212c0.613,0.349,1.239,0.678,1.88,0.98
@@ -91,20 +91,20 @@
       <div class="u-clearfix u-sheet u-sheet-1"><!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/blog_options_json-->
         <div class="u-blog u-blog-1">
           <div class="u-repeater u-repeater-1"><!--blog_post-->
-              {% for post in  test()  %}
+              {% for post in  test('')  %}
               <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-bottom-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
-                <a class="u-post-header-link" href="blog/post-3.html"><!--blog_post_image-->
+                <a class="u-post-header-link" href="/post/{{ post[5]}}"><!--blog_post_image-->
                   <img src="static/3.jpeg" alt="" class="u-blog-control u-image u-image-default u-image-3"><!--/blog_post_image-->
                 </a><!--blog_post_header-->
                 <h2 class="u-blog-control u-text u-textc-5">
-                  <a class="u-post-header-link" href="blog/post-3.html"><!--blog_post_header_content-->{{ post[3] }}<!--/blog_post_header_content--></a>
+                  <a class="u-post-header-link" href="/post/{{post[5]}}"><!--blog_post_header_content-->{{ post[3] }}<!--/blog_post_header_content--></a>
                 </h2><!--/blog_post_header--><!--blog_post_content-->
                 <div class="u-blog-control u-post-content u-text u-text-6"><!--blog_post_content_content--> {{ post[4] }}<!--/blog_post_content_content--></div><!--/blog_post_content--><!--blog_post_metadata-->
                 <div class="u-blog-control u-metadata u-metadata-3"><!--blog_post_metadata_date-->
                   <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->{{ post[1] }}<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
                 </div><!--/blog_post_metadata--><!--blog_post_readmore-->
-                <a href="/post/{{ post[3] }}" class="u-blog-control u-border-2 u-border-grey-dark-1 u-btn u-btn-rectangle u-button-style u-none u-btn-3"><!--blog_post_readmore_content--><!--options_json--><!--{"content":"","defaultValue":"Read More"}--><!--/options_json-->Comments<!--/blog_post_readmore_content--></a><!--/blog_post_readmore-->
+                <a href="/post/{{post[5]}}" class="u-blog-control u-border-2 u-border-grey-dark-1 u-btn u-btn-rectangle u-button-style u-none u-btn-3"><!--blog_post_readmore_content--><!--options_json--><!--{"content":"","defaultValue":"Read More"}--><!--/options_json-->View More<!--/blog_post_readmore_content--></a><!--/blog_post_readmore-->
               </div>
             </div><!--/blog_post-->
               {%  endfor %}
