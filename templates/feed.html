@@ -164,18 +164,18 @@ background-color: #000000 !important
               <div class="u-container-style u-tab-active u-tab-pane" id="tab-2981" role="tabpanel" aria-labelledby="link-tab-2981">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-form u-form-1">
-                    <form action="//publish.nicepage.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <form action="/createpost" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                       <div class="u-form-group u-form-name">
                         <label for="name-66b1" class="u-label">Title</label>
-                        <input type="text" placeholder="title" id="name-66b1" name="create-post-title" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        <input type="text" placeholder="title" id="name-66b1" name="title" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                       </div>
                       <div class="u-form-group u-form-message">
                         <label for="email-66b1" class="u-label">Description</label>
-                        <textarea placeholder="enter description" id="email-66b1" name="create-post-desc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></textarea>
+                        <textarea placeholder="enter description" id="email-66b1" name="desc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></textarea>
                       </div>
                       <div class="u-form-file-upload u-form-group u-form-textarea u-form-group-3">
                         <label for="textarea-23c9" class="u-label">Photo</label>
-                        <input rows="4" cols="50" id="textarea-23c9" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" type="file" accept="IMAGES">
+                        <input rows="4" cols="50" id="textarea-23c9" name="photo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" type="file" accept="IMAGES">
                       </div>
                       <div class="u-form-group u-form-select u-form-group-4">
                         <label for="select-205b" class="u-label">Add To Collection</label>
@@ -185,7 +185,7 @@ background-color: #000000 !important
                             <option value="Item 2">Item 2</option>
                             <option value="Item 3">Item 3</option>
                           </select>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12"  class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
                         </div>
                       </div>
                       <div class="u-form-group u-form-group-5">
@@ -194,7 +194,7 @@ background-color: #000000 !important
                       </div>
                       <div class="u-align-left u-form-group u-form-submit">
                         <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
+                        <input type="submit" value="/createpost">
                       </div>
                       <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
                       <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>

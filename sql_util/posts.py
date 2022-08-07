@@ -42,7 +42,7 @@ def create_post(title, desc):
     mycursor.execute('''
 
             INSERT INTO userposts
-            VALUES (%s, %s, %s, %s, %s, %s );
+            VALUES (%s, %s, %s, %s, %s, %s, 0);
 
         ''', ("cat", "username", "photo uri", title, desc, assign_post_id()))
 
