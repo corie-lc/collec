@@ -70,9 +70,30 @@ def assign_post_id():
 
     if len(posts) > 0:
         while str(num) == str(posts[0][5]):
-            num = random.randint(000000000, 10000000000)
+            num = random.randint(000, 1000000)
 
     return num
+
+
+def create_collection(title, photo):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    mycursor = mydb.cursor()
+
+    mycursor.execute('''
+
+            INSERT INTO collections
+            VALUES (%s, %s, %s, %s);
+
+        ''', (str(title), assign_post_id(), '0', str(session['username'])))
+    print("HERE")
+
+    mydb.commit()
 
 
 def assign_collection_id():

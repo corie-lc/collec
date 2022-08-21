@@ -4,7 +4,7 @@ from flask_session import Session
 
 from sql_util.users import does_user_exist, crete_user, login, sql_update_user, get_user_email
 from sql_util.posts import create_post, add_comment
-from sql_util.posts import assign_post_id
+from sql_util.posts import assign_post_id, create_collection
 
 from flask import Flask, render_template, redirect, request, session, url_for
 
@@ -76,6 +76,17 @@ def login_flask():
         return render_template("feed.html")
     else:
         return render_template("Home.html")
+
+
+@app.route('/createcollection', methods=['POST', 'GET'])
+def create_collection_flask():
+    print("HERE")
+    title = request.form.get("collection-title")
+    desc = request.form.get("collection-desc")
+    name = request.form.get("collection-photo")
+
+    create_collection(title, desc)
+    return render_template('feed.html')
 
 
 @app.route('/createpost', methods=['POST', 'GET'])
@@ -182,6 +193,49 @@ def get_comments(post_id):
     return comments
 
 
+@app.route('/collection/<collectionid>')
+def launcg_collection(collectionid):
+    print(collectionid)
+    # renders post.html page, renders page with correct post
+    return render_template('post.html', para1=collectionid)
+
+
+def get_user_collections():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM collections")
+    collections = []
+
+    for item in cursor:
+        if item[3] == session['username']:
+            collections.append(item)
+
+    return collections
+
+def get_collections():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM collections")
+    collections = []
+
+    for item in cursor:
+        collections.append(item)
+
+    return collections
+
+
 def get_new_post_id():
     num = assign_post_id()
     return num
@@ -190,6 +244,7 @@ def get_new_post_id():
 app.jinja_env.globals.update(comments=get_comments)
 app.jinja_env.globals.update(search=search)
 app.jinja_env.globals.update(test=test)
+app.jinja_env.globals.update(get_user_collections=get_user_collections)
 
 if __name__ == '__main__':
     app.run()
