@@ -7,11 +7,30 @@
     <title>Page 1</title>
     <link rel="stylesheet" href="static/nicepage.css" media="screen">
 <link rel="stylesheet" href="static/Page-1.css" media="screen">
+    <script type="text/javascript" src="{{ url_for('static', filename='util.js') }}"></script>    <link rel="stylesheet" href="/static/nicepage.css" media="screen">
     <script class="u-script" type="text/javascript" src="static/jquery.js"  defer=""></script>
     <script class="u-script" type="text/javascript" src="static/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.15.8, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
+    <script>
+
+            $(document).ready(function() {
+
+                $('input[name="input"]').tagsinput({
+                    trimValue: true,
+                    confirmKeys: [13, 44, 32],
+                    focusClass: 'my-focus-class'
+                });
+
+                $('.bootstrap-tagsinput input').on('focus', function() {
+                    $(this).closest('.bootstrap-tagsinput').addClass('has-focus');
+                }).on('blur', function() {
+                    $(this).closest('.bootstrap-tagsinput').removeClass('has-focus');
+                });
+
+            });
+    </script>
 
 
 
@@ -96,7 +115,7 @@
       <div class="u-clearfix u-sheet u-sheet-1"><!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/blog_options_json-->
         <div class="u-blog u-blog-1">
           <div class="u-repeater u-repeater-1"><!--blog_post-->
-              {% for post in  test('')  %}
+              {% for post in  get_relevant()  %}
               <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-bottom-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
                 <a class="u-post-header-link" href="/post/{{ post[5]}}"><!--blog_post_image-->
@@ -164,7 +183,7 @@ background-color: #000000 !important
               <div class="u-container-style u-tab-active u-tab-pane" id="tab-2981" role="tabpanel" aria-labelledby="link-tab-2981">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-form u-form-1">
-            <form action="/createpost" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+            <form action="/createpost" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" >
                       <div class="u-form-group u-form-name">
                         <label for="name-66b1" class="u-label">Title</label>
                         <input type="text" placeholder="title" id="name-66b1" name="title" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
@@ -189,16 +208,28 @@ background-color: #000000 !important
                         </div>
                       </div>
                       <div class="u-form-group u-form-group-5">
-                        <label for="text-d14f" class="u-label">Catagory</label>
-                        <input type="text" placeholder="" id="text-d14f" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+
+                        <form>
+                    <label>w1:</label><input id="inputw1" type="text" style="color: black">
+                    <ul id="list"></ul>
+                    <input type="button" value="add rule" onclick="pushTags()">
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
                       </div>
                       <div class="u-align-left u-form-group u-form-submit">
-                        <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-                        <input type="submit" value="/createpost">
+                        <input type="submit" value="/createpost" onclick="refreshAfterPost()">
                       </div>
-                      <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                      <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                      <input type="hidden" value="" name="recaptchaResponse">
                     </form>
                   </div>
                 </div>

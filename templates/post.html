@@ -5,8 +5,8 @@
     <meta name="keywords" content="Create Post">
     <meta name="description" content="">
     <title>post</title>
-    <link rel="stylesheet" href="/static/nicepage.css" media="screen">
-<link rel="stylesheet" href="/static/post.css" media="screen">
+    <script type="text/javascript" src="{{ url_for('static', filename='util.js') }}"></script>    <link rel="stylesheet" href="/static/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/static/post.css" media="screen">
     <script class="u-script" type="text/javascript" src="/static/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/static/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.13.4, nicepage.com">
@@ -149,16 +149,14 @@
                                     {%  endfor %}
                   </div>
 
-
-
                 </div>
                   <form action="/post_comment/{{ para1 }}" method= "POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                   <div class="u-form-group u-form-group-2">
                   <label for="text-7dbf" class="u-label">Comment</label>
-                  <input type="text" placeholder="w" id="login-password" name="comment" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                  <input type="text" placeholder="w" id="login-password" name="comment" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" >
                 </div>
                 <div class="u-align-left u-form-group u-form-submit">
-                  <input type="submit" value="/post_comment">
+                  <input type="submit" value="/post_comment" onclick="refreshAfterPost()">
                 </div>
             </form>
               </div>

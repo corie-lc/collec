@@ -120,3 +120,66 @@ def assign_collection_id():
             num = random.randint(000000000, 10000000000)
 
     return num
+
+
+def get_comments(post_id):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM comments")
+    comments = []
+
+    for item in cursor:
+        if item[0] == post_id:
+            print(item)
+            comments.append(item)
+
+    return comments
+
+
+def get_user_collections():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM collections")
+    collections = []
+
+    for item in cursor:
+        if item[3] == session['username']:
+            collections.append(item)
+
+    return collections
+
+
+def get_collections():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="admin",
+        password="681336",
+        database="collec"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM collections")
+    collections = []
+
+    for item in cursor:
+        collections.append(item)
+
+    return collections
+
+
+def get_new_post_id():
+    num = assign_post_id()
+    return num
+

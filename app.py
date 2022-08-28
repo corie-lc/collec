@@ -1,9 +1,8 @@
-import mysql
-import mysql.connector
 from flask_session import Session
+from sql_util.search import search_sql, get_relevant_posts
 
 from sql_util.users import does_user_exist, crete_user, login, sql_update_user, get_user_email
-from sql_util.posts import create_post, add_comment
+from sql_util.posts import create_post, add_comment, get_comments, get_user_collections, get_new_post_id
 from sql_util.posts import assign_post_id, create_collection
 
 from flask import Flask, render_template, redirect, request, session, url_for
@@ -23,7 +22,6 @@ def hello_world():  # put application's code here
     sess.init_app(app)
 
     Session(app)
-    get_new_post_id()
 
     return render_template('Home.html')
 
@@ -39,6 +37,7 @@ def post(post_id):
 def post_comment(post_id):
     comment = request.form.get('comment')
     add_comment(comment, post_id)
+
     return render_template('post.html/', para1=post_id)
 
 
@@ -62,7 +61,7 @@ def signup():
     return render_template("Home.html")
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/feed', methods=['POST', 'GET'])
 def login_flask():
     # getting input from login page
     name = request.form.get("login-name")
@@ -137,60 +136,10 @@ def change_password():
         return render_template("settings.html")
 
 
-# needs to be deleted
-def test(search_entry):
-    print(search_entry)
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="admin",
-        password="681336",
-        database="collec"
-    )
-
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM userposts")
-    posts = []
-
-    for item in cursor:
-        if len(str(search_entry)) > 0:
-            print(search_entry)
-            if str(search_entry) in item[3]:
-                posts.append(item)
-            else:
-                pass
-        else:
-            posts.append(item)
-
-    print(posts)
-    return posts
-
-
-@app.route('/search/',  methods=['POST', 'GET'])
+@app.route('/search/', methods=['POST', 'GET'])
 def search():
     search_entry = request.form.get('search_entry')
-    print(search_entry)
-    print("----")
     return render_template('search.html/', para1=search_entry)
-
-
-def get_comments(post_id):
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="admin",
-        password="681336",
-        database="collec"
-    )
-
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM comments")
-    comments = []
-
-    for item in cursor:
-        if item[0] == post_id:
-            print(item)
-            comments.append(item)
-
-    return comments
 
 
 @app.route('/collection/<collectionid>')
@@ -200,50 +149,10 @@ def launcg_collection(collectionid):
     return render_template('post.html', para1=collectionid)
 
 
-def get_user_collections():
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="admin",
-        password="681336",
-        database="collec"
-    )
-
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM collections")
-    collections = []
-
-    for item in cursor:
-        if item[3] == session['username']:
-            collections.append(item)
-
-    return collections
-
-def get_collections():
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="admin",
-        password="681336",
-        database="collec"
-    )
-
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM collections")
-    collections = []
-
-    for item in cursor:
-        collections.append(item)
-
-    return collections
-
-
-def get_new_post_id():
-    num = assign_post_id()
-    return num
-
-
 app.jinja_env.globals.update(comments=get_comments)
+app.jinja_env.globals.update(get_relevant=get_relevant_posts)
 app.jinja_env.globals.update(search=search)
-app.jinja_env.globals.update(test=test)
+app.jinja_env.globals.update(test=search_sql)
 app.jinja_env.globals.update(get_user_collections=get_user_collections)
 
 if __name__ == '__main__':
